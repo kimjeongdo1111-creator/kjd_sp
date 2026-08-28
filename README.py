@@ -245,14 +245,14 @@ else:
 # 메인 기능 - 업로더 카드
 st.markdown('<div class="premium-card">', unsafe_allow_html=True)
 uploaded_file = st.file_uploader(
-    "노이즈를 제거할 WAV 오디오 파일을 드래그 앤 드롭하거나 선택하세요.",
-    type=["wav"],
-    help="현재는 WAV 포맷 파일만 공식적으로 지원합니다."
+    "노이즈를 제거할 오디오 파일을 드래그 앤 드롭하거나 선택하세요.",
+    type=["wav", "mp3"],
+    help="WAV 및 MP3 포맷을 지원합니다."
 )
 st.markdown('</div>', unsafe_allow_html=True)
 
 if uploaded_file is not None:
-    # WAV 로드
+    # WAV/MP3 로드
     with st.spinner("오디오 파일을 파싱하는 중..."):
         # librosa는 file-like object를 지원하므로 directly load 가능
         y_org, sr = librosa.load(uploaded_file, sr=None)
@@ -319,4 +319,4 @@ if uploaded_file is not None:
         
 else:
     # 업로드 대기 화면 플레이스홀더
-    st.info("💡 사이드바에서 노이즈 제거 파라미터를 조절하고, WAV 파일을 올려 즉각적인 잡음 필터링 결과를 청취해 보세요.")
+    st.info("💡 사이드바에서 노이즈 제거 파라미터를 조절하고, WAV 또는 MP3 파일을 올려 즉각적인 잡음 필터링 결과를 청취해 보세요.")
